@@ -1,14 +1,12 @@
 package com.sparta.task2.entity;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 
 import java.time.LocalDateTime;
 
 @Entity
-@Getter
-@Setter
+@Data
 @Table(name = "ProductUserNotificationHistory", indexes = {
         @Index(name = "idx_product_user_round", columnList = "productId, userId, restockRound"),
         @Index(name = "idx_sent_date", columnList = "sentDate")
@@ -17,11 +15,11 @@ public class ProductUserNotificationHistory {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long userId;
 
     @ManyToOne
     @JoinColumn(name = "productId", nullable = false)
-    private Product product;
+    private Product productId;
 
     @ManyToOne
     @JoinColumn(name = "userId", nullable = false)
@@ -30,4 +28,6 @@ public class ProductUserNotificationHistory {
     private int restockRound;
 
     private LocalDateTime sentDate;
+
+
 }

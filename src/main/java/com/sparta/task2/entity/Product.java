@@ -20,5 +20,7 @@ public class Product {
 
     private int restockRound; // 재입고 회차
 
+    private int stockQuantity; // 남은 재고 수량
+
     private String stockStatus; // 재고 상태
 }
