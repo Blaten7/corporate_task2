@@ -1,0 +1,16 @@
+server:
+  port: 8082
+spring:
+  datasource:
+    url: jdbc:mysql://db.cfu4cgmokcze.ap-northeast-2.rds.amazonaws.com:3306/corpTask
+    username: admin
+    password: dlgudrn1998
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+        dialect: org.hibernate.dialect.MySQLDialect
