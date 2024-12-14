@@ -2,7 +2,7 @@ server:
   port: 8082
 spring:
   datasource:
-    url: jdbc:mysql://db.cfu4cgmokcze.ap-northeast-2.rds.amazonaws.com:3306/corpTask
+    url: jdbc:mysql://db.cfu4cgmokcze.ap-northeast-2.rds.amazonaws.com:3306/corpTask2
     username: admin
     password: dlgudrn1998
     driver-class-name: com.mysql.cj.jdbc.Driver
