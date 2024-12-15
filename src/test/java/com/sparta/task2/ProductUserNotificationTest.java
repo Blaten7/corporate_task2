@@ -50,7 +50,6 @@ public class ProductUserNotificationTest {
             product.setRestockRound(0); // 초기값 설정
             product.setStockStatus(random.nextInt(10000)); // 0 ~ 9999 사이 랜덤 재고 설정
             productRepository.save(product);
-
             // 2. 각 상품에 대해 랜덤 유저 알림 등록 (0~5000명)
             int userCount = random.nextInt(5001); // 0 ~ 5000
             for (int j = 1; j <= userCount; j++) {
