@@ -3,7 +3,6 @@ package com.sparta.task2.service;
 import com.sparta.task2.entity.Product;
 import com.sparta.task2.repository.ProductRepository;
 import jakarta.transaction.Transactional;
-import org.aspectj.weaver.Lint;
 import org.springframework.stereotype.Service;
 
 @Service
