@@ -9,7 +9,7 @@ import java.time.LocalDateTime;
 @Entity
 @Getter
 @Setter
-@Table(name = "ProductUserNotification", indexes = {
+@Table(name = "product_user_notification", indexes = {
         @Index(name = "idx_product_user", columnList = "productId, userId"),
         @Index(name = "idx_active_created", columnList = "isActive, createdAt")
 })
@@ -17,13 +17,11 @@ public class ProductUserNotification {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id; // PK 설정
+    private Long userId; // PK 설정
 
     @ManyToOne
     @JoinColumn(name = "productId", nullable = false)
     private Product product;
-
-    private Long userId;
 
     private boolean isActive;
 

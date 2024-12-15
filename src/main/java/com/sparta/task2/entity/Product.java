@@ -1,13 +1,11 @@
 package com.sparta.task2.entity;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 
+@Data
 @Entity
-@Getter
-@Setter
-@Table(name = "Product", indexes = {
+@Table(name = "product", indexes = {
         @Index(name = "idx_product_restock", columnList = "productId, restockRound"),
         @Index(name = "idx_stock_status", columnList = "stockStatus")
 })
@@ -20,7 +18,10 @@ public class Product {
 
     private int restockRound; // 재입고 회차
 
-    private int stockQuantity; // 남은 재고 수량
+    private int stockStatus; // 재고 수량
 
-    private String stockStatus; // 재고 상태
+    private String stock; // 재고 상태
+
+    @Version
+    private Long version;
 }

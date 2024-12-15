@@ -7,7 +7,7 @@ import lombok.Setter;
 @Entity
 @Getter
 @Setter
-@Table(name = "ProductNotificationHistory", indexes = {
+@Table(name = "product_notification_history", indexes = {
         @Index(name = "idx_product_round", columnList = "productId, restockRound"),
         @Index(name = "idx_notification_status", columnList = "notificationStatus"),
         @Index(name = "idx_last_sent_user", columnList = "lastSentUserId")
