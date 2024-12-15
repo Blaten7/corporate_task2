@@ -3,9 +3,7 @@ package com.sparta.task2.service;
 import com.sparta.task2.dto.NotificationRequestDto;
 import com.sparta.task2.entity.Product;
 import com.sparta.task2.entity.ProductUserNotification;
-import com.sparta.task2.repository.ProductNotificationHistoryRepository;
 import com.sparta.task2.repository.ProductRepository;
-import com.sparta.task2.repository.ProductUserNotificationHistoryRepository;
 import com.sparta.task2.repository.ProductUserNotificationRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -32,7 +30,7 @@ public class RestockNotificationService {
                 .orElseThrow(() -> new IllegalArgumentException("Product not found with ID: " + productId));
 
         // 2. 알림 신청 유저 조회
-        List<ProductUserNotification> notifications = userNotificationRepository.findByProductProductIdAndIsActive(productId, true);
+        List<ProductUserNotification> notifications = userNotificationRepository.findByProductProductIdAndActive(productId, true);
 
         if (notifications.isEmpty()) {
             throw new IllegalStateException("No active notifications for this product.");
