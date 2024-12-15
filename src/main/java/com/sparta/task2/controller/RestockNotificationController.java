@@ -16,7 +16,7 @@ public class RestockNotificationController {
     }
 
     /**
-     * 상품별 재입고 알람을 신청한 유저 등록 API
+     * 상품별 재입고 알람을 신청한 유저 등록.
      */
     @PostMapping("/{productId}/notification/registerUser")
     public ResponseEntity<String> saveUserNotificationRestock(@PathVariable Long productId) {

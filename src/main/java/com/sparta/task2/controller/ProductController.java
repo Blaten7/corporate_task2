@@ -1,7 +1,9 @@
 package com.sparta.task2.controller;
 
+import com.sparta.task2.dto.ProductRequestDto;
 import com.sparta.task2.entity.Product;
 import com.sparta.task2.service.ProductService;
+import jakarta.transaction.Transactional;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
