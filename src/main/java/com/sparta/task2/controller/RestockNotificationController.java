@@ -1,5 +1,6 @@
 package com.sparta.task2.controller;
 
+import com.sparta.task2.dto.RestockNotificationRequest;
 import com.sparta.task2.service.RestockNotificationService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -28,16 +29,16 @@ public class RestockNotificationController {
      * 일반 사용자용 재입고 알림 전송 API
      */
     @PostMapping("/{productId}/notifications/re-stock")
-    public ResponseEntity<String> sendRestockNotifications(@PathVariable Long productId) {
-        restockNotificationService.processRestockNotifications(productId);
+    public ResponseEntity<String> sendRestockNotifications(@RequestBody RestockNotificationRequest rnr) {
+        restockNotificationService.processRestockNotifications(rnr);
         return ResponseEntity.ok("Notification request enqueued.");
     }
 
-    /**
-     * 관리자를 위한 수동 재입고 알림 전송 API
-     */
-    @PostMapping("/admin/{productId}/notifications/re-stock")
-    public void sendManualRestockNotifications(@PathVariable Long productId) {
-        restockNotificationService.processRestockNotifications(productId);
-    }
+//    /**
+//     * 관리자를 위한 수동 재입고 알림 전송 API
+//     */
+//    @PostMapping("/admin/{productId}/notifications/re-stock")
+//    public void sendManualRestockNotifications(@RequestBody RestockNotificationRequest rnr) {
+//        restockNotificationService.processRestockNotifications(rnr);
+//    }
 }

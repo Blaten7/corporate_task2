@@ -8,7 +8,8 @@ import java.util.List;
 
 @Repository
 public interface ProductUserNotificationRepository extends JpaRepository<ProductUserNotification, Long> {
-    List<ProductUserNotification> findByProductProductIdAndIsActive(Long productId, boolean isActive);
+    // 알림 신청 유저 조회 메서드 (createdAt 기준 정렬)
+    List<ProductUserNotification> findByProductProductIdAndIsActiveOrderByCreatedAtAsc(Long productId, boolean isActive);
 
     List<ProductUserNotification> findByProductProductId(Long productId);
 }

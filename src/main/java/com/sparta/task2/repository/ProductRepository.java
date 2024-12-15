@@ -19,4 +19,15 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
             "ELSE 'IN_STOCK' END " +
             "WHERE p.productId = :id")
     void updateStockStatusById(@Param("id") long id);
+
+    @Modifying
+    @Transactional
+    @Query("UPDATE Product P " +
+            "SET P.restockRound = P.restockRound + 1, " +
+            "    P.stockStatus = P.stockStatus + :quantity " +
+            "WHERE P.productId = :productId")
+    void updateRestockRoundAndStockStatusById(@Param("productId") long productId,
+                                              @Param("quantity") long quantity);
+
+
 }
