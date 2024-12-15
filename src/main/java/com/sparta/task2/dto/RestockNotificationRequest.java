@@ -7,4 +7,5 @@ import lombok.Setter;
 @Setter
 public class RestockNotificationRequest {
     private Long productId;
+    private Long quantity;
 }
