@@ -2,22 +2,18 @@ package com.sparta.task2.service;
 
 import com.sparta.task2.dto.NotificationRequestDto;
 import com.sparta.task2.entity.Product;
-import com.sparta.task2.entity.ProductNotificationHistory;
 import com.sparta.task2.entity.ProductUserNotification;
-import com.sparta.task2.entity.ProductUserNotificationHistory;
 import com.sparta.task2.repository.ProductNotificationHistoryRepository;
 import com.sparta.task2.repository.ProductRepository;
 import com.sparta.task2.repository.ProductUserNotificationHistoryRepository;
 import com.sparta.task2.repository.ProductUserNotificationRepository;
 import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.data.redis.core.RedisTemplate;
 
 import java.time.LocalDateTime;
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 
 @Service
 @AllArgsConstructor
@@ -25,8 +21,6 @@ public class RestockNotificationService {
 
     private final ProductRepository productRepository;
     private final ProductUserNotificationRepository userNotificationRepository;
-    private final ProductNotificationHistoryRepository notificationHistoryRepository;
-    private final ProductUserNotificationHistoryRepository userNotificationHistoryRepository;
     private final RedisTemplate<String, String> redisTemplate;
     private final ProductUserNotificationRepository productUserNotificationRepository;
 
