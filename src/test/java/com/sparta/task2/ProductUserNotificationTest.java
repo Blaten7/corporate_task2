@@ -25,7 +25,7 @@ public class ProductUserNotificationTest {
     private ProductRepository productRepository;
     @Autowired
     private ProductUserNotificationRepository productUserNotificationRepository;
-    // 깃 커밋 컨트리뷰션 미반영 에러 테스트 진행중 1
+    // 깃 커밋 컨트리뷰션 미반영 에러 테스트 진행중 1 2
     @BeforeEach
     public void resetDatabase() {
         try {
