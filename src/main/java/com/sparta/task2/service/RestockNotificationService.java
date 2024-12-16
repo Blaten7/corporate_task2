@@ -13,15 +13,12 @@ import com.sparta.task2.repository.ProductUserNotificationHistoryRepository;
 import com.sparta.task2.repository.ProductUserNotificationRepository;
 import jakarta.persistence.EntityManager;
 import lombok.AllArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.data.redis.core.RedisTemplate;
-
 import java.time.LocalDateTime;
-import java.util.Arrays;
 import java.util.List;
 
 @Service
@@ -35,7 +32,6 @@ public class RestockNotificationService {
     private final RedisTemplate<String, String> redisTemplate;
     private final ProductUserNotificationRepository productUserNotificationRepository;
     private final NotificationSender notificationSender;
-    private final EntityManager entityManager;
     private static final Logger log = LoggerFactory.getLogger(RestockNotificationService.class);
 
     // 재입고 알림 요청 처리

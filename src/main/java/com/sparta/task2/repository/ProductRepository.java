@@ -38,9 +38,9 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
             "where p.productId = :productId")
     int findByIdRestockRound(Long productId);
 
-    @Modifying
-    @Query("update Product p " +
-            "set p.stockStatus = p.stockStatus -1 " +
-            "where p.productId = :productId")
-    void updateStockById(long productId);
+//    @Modifying
+//    @Query("update Product p " +
+//            "set p.stockStatus = p.stockStatus -1 " +
+//            "where p.productId = :productId")
+//    void updateStockById(long productId);
 }
