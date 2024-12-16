@@ -1,12 +1,10 @@
 package com.sparta.task2.entity;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 
 @Entity
-@Getter
-@Setter
+@Data
 @Table(name = "product_notification_history", indexes = {
         @Index(name = "idx_product_round", columnList = "productId, restockRound"),
         @Index(name = "idx_notification_status", columnList = "notificationStatus"),
@@ -19,8 +17,8 @@ public class ProductNotificationHistory {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id; // PK 설정
 
-    @ManyToOne
-    @JoinColumn(name = "productId", nullable = false)
+    @ManyToOne(cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "product_id", nullable = false)
     private Product product;
 
     private int restockRound;

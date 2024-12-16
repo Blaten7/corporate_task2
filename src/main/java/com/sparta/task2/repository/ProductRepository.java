@@ -30,4 +30,17 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
                                               @Param("quantity") long quantity);
 
 
+    @Query("SELECT P.stockStatus from Product P " +
+            "WHERE P.productId = :productId")
+    int findByIdStockStatus(long productId);
+
+    @Query("select p.restockRound from Product p " +
+            "where p.productId = :productId")
+    int findByIdRestockRound(Long productId);
+
+    @Modifying
+    @Query("update Product p " +
+            "set p.stockStatus = p.stockStatus -1 " +
+            "where p.productId = :productId")
+    void updateStockById(long productId);
 }
