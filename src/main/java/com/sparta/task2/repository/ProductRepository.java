@@ -24,7 +24,10 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
     @Transactional
     @Query("UPDATE Product P " +
             "SET P.restockRound = P.restockRound + 1, " +
-            "    P.stockStatus = P.stockStatus + :quantity " +
+            "P.stockStatus = P.stockStatus + :quantity, " +
+            "P.stock = CASE " +
+            "WHEN P.stockStatus = 0 THEN 'OUT_OF_STOCK' " +
+            "ELSE 'IN_STOCK' END " +
             "WHERE P.productId = :productId")
     void updateRestockRoundAndStockStatusById(@Param("productId") long productId,
                                               @Param("quantity") long quantity);

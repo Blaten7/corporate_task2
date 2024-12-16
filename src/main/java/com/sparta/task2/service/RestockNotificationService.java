@@ -89,7 +89,7 @@ public class RestockNotificationService {
 
         // 4. Redis 큐에 저장된 순서대로 알림을 발송
         for (int i = 0; i < notifications.size(); i++) {
-            log.info("Redis 큐에 저장된 순서대로 알림을 발송" + (i + 1) + "회차 진행중");
+            log.info("Redis 큐에 저장된 순서대로 알림을 발송" + (i + 1) + "회차 진행중\n 레디스 큐 사이즈 : {}", notifications.size());
             String jsonRequest = redisTemplate.opsForList().leftPop("restock-notifications-keys");
 
             if (jsonRequest == null) {
@@ -102,18 +102,20 @@ public class RestockNotificationService {
             try {
                 ObjectMapper objectMapper = new ObjectMapper();
                 NotificationRequestDto request = objectMapper.readValue(jsonRequest, NotificationRequestDto.class);
+                long userId = request.getUserId();
+                long productIds = request.getProductId();
 
                 // 5-2. 재입고 알림을 발송한 유저 정보 저장
                 log.info("자 이제 유저 정보를 저장할건데");
-                int restockRound = productRepository.findByIdRestockRound(request.getProductId());
-                userNotificationHistoryRepository.saveAllTo(request.getUserId(), request.getProductId(), restockRound);
+                int restockRound = productRepository.findByIdRestockRound(productIds);
+                userNotificationHistoryRepository.saveAllTo(userId, productIds, restockRound);
                 System.out.println("저장이 잘 되었다");
 
                 // 알림 전송
-                notificationSender.sendNotification(request.getUserId(), request.getProductId());
+                notificationSender.sendNotification(userId, productIds);
                 System.out.println("알림 전송도 끝");
                 // 알림 전송시 상품별 재입고 알림 히스토리에 저장
-                notificationHistoryRepository.saveNoticeLog(request.getProductId(), restockRound, request.getUserId());
+                notificationHistoryRepository.saveNoticeLog(productIds, restockRound, userId);
                 log.info("알림 전송시 상품별 재입고 알림 히스토리에 저장까지 완료");
                 // 5-1. 재입고 알림 발송중 품절 [ CANCELED_BY_SOLD_OUT ] 또는 예외 [ CANCELED_BY_ERROR ] 발생시 알림발송 중단,
 //                productRepository.updateStockById(productId); // stockStatusException 품절 예외 강제 발생
