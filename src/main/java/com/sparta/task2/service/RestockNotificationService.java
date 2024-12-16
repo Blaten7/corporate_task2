@@ -11,7 +11,6 @@ import com.sparta.task2.repository.ProductNotificationHistoryRepository;
 import com.sparta.task2.repository.ProductRepository;
 import com.sparta.task2.repository.ProductUserNotificationHistoryRepository;
 import com.sparta.task2.repository.ProductUserNotificationRepository;
-import jakarta.persistence.EntityManager;
 import lombok.AllArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
