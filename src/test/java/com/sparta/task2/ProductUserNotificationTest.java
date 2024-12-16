@@ -62,7 +62,6 @@ public class ProductUserNotificationTest {
                 notification.setUpdatedAt(LocalDateTime.now());
                 productUserNotificationRepository.save(notification);
             }
-
             // 로그 출력
             System.out.printf("Product %d created with %d user notifications%n", i, userCount);
         }
