@@ -31,14 +31,15 @@ public class RestockNotificationController {
     @PostMapping("/{productId}/notifications/re-stock")
     public ResponseEntity<String> sendRestockNotifications(@RequestBody RestockNotificationRequest rnr) {
         restockNotificationService.processRestockNotifications(rnr);
-        return ResponseEntity.ok("Notification request enqueued.");
+        return ResponseEntity.ok("Normal User notification send successfully.");
     }
 
-//    /**
-//     * 관리자를 위한 수동 재입고 알림 전송 API
-//     */
-//    @PostMapping("/admin/{productId}/notifications/re-stock")
-//    public void sendManualRestockNotifications(@RequestBody RestockNotificationRequest rnr) {
-//        restockNotificationService.processRestockNotifications(rnr);
-//    }
+    /**
+     * 관리자를 위한 수동 재입고 알림 전송 API
+     */
+    @PostMapping("/admin/{productId}/notifications/re-stock")
+    public ResponseEntity<String> sendManualRestockNotifications(@RequestBody RestockNotificationRequest rnr) {
+        restockNotificationService.processRestockNotificationsForAdmin(rnr);
+        return ResponseEntity.ok("Admin notification send successfully.");
+    }
 }

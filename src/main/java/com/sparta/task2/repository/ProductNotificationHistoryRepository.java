@@ -42,9 +42,9 @@ public interface ProductNotificationHistoryRepository extends JpaRepository<Prod
     @Modifying
     @Transactional
     @Query("UPDATE ProductNotificationHistory PNH " +
-            "SET PNH.notificationStatus = 'CANCELED_BY_SOLD_OUT' " +
+            "SET PNH.restockRound = PNH.restockRound + 1 " +
             "WHERE PNH.product = :product")
-    void saveNoticeLogTableCurrentStatus(@Param("product") Product product);
+    void updateRestockRound(@Param("product") Product product);
 
     @Modifying
     @Transactional
@@ -53,4 +53,14 @@ public interface ProductNotificationHistoryRepository extends JpaRepository<Prod
             "WHERE PNH.product = :product")
     void saveNoticeLogTableCurrentStatus2(@Param("product") Product product);
 
+    @Modifying
+    @Transactional
+    @Query(value = "INSERT INTO product_notification_history " +
+            "(last_sent_user_id, notification_status, restock_round, product_id) " +
+            "VALUES (:userId, 'CANCELED_BY_SOLD_OUT', :restockRound,:product)", nativeQuery = true)
+    void saveNoticeLogTableExceptionStatus(long userId, int restockRound, long product);
+
+    @Query("select p.restockRound from ProductNotificationHistory p " +
+            "where p.product = :product")
+    int findByProductIdRestockRound(@Param("product") Product product);
 }
