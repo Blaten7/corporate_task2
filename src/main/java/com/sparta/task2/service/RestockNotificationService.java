@@ -5,7 +5,6 @@ import com.sparta.task2.component.NotificationSender;
 import com.sparta.task2.dto.NotificationRequestDto;
 import com.sparta.task2.dto.RestockNotificationRequest;
 import com.sparta.task2.entity.Product;
-import com.sparta.task2.entity.ProductNotificationHistory;
 import com.sparta.task2.entity.ProductUserNotification;
 import com.sparta.task2.repository.ProductNotificationHistoryRepository;
 import com.sparta.task2.repository.ProductRepository;
