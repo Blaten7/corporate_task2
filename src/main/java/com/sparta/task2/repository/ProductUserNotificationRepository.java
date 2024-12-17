@@ -1,5 +1,6 @@
 package com.sparta.task2.repository;
 
+import com.sparta.task2.entity.Product;
 import com.sparta.task2.entity.ProductUserNotification;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -27,4 +28,5 @@ public interface ProductUserNotificationRepository extends JpaRepository<Product
             "ORDER BY pun.createdAt ASC")
     List<ProductUserNotification> findActiveNotificationsExcludingCompleted(@Param("productId") Long productId);
 
+    boolean existsByProductAndUserId(Product product, long i);
 }
